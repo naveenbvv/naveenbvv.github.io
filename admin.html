@@ -5,41 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Messages — Private Admin</title>
   <meta name="robots" content="noindex, nofollow" />
-  <meta name="theme-color" content="#fafafa" />
+  <meta name="theme-color" content="#ffffff" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #f5f7fb;
-      --bg-soft: #edf1f8;
-      --card: rgba(255, 255, 255, 0.9);
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --card: #ffffff;
       --card-strong: #ffffff;
-      --border: rgba(15, 15, 20, 0.08);
-      --border-strong: rgba(15, 15, 20, 0.14);
-      --text: #161a22;
-      --text-dim: #465066;
-      --text-faint: #7a8193;
-      --accent: #4a5ef7;
-      --accent-strong: #3c4ce1;
-      --accent-soft: rgba(74, 94, 247, 0.1);
-      --accent-glow: rgba(74, 94, 247, 0.15);
-      --green: #1a7f4a;
-      --red: #c42727;
-      --yellow: #b7791f;
+      --border: #e8eaee;
+      --border-strong: #d6dae1;
+      --text: #20242b;
+      --text-dim: #565e6b;
+      --text-faint: #7d8490;
+      --accent: #38665b;
+      --accent-strong: #2d554b;
+      --accent-soft: #edf4f1;
+      --accent-glow: rgba(56, 102, 91, 0.12);
+      --green: #38665b;
+      --red: #b42318;
+      --yellow: #9a6700;
       --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --mono: "SF Mono", "JetBrains Mono", "Fira Code", Consolas, monospace;
-      --radius: 16px;
+      --radius: 12px;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
-      --shadow: 0 1px 2px rgba(15,15,20,0.03), 0 18px 40px -22px rgba(30,41,59,0.25);
+      --shadow: 0 1px 3px rgba(24,32,40,0.04), 0 8px 22px -16px rgba(24,32,40,0.14);
     }
 
     html { scroll-behavior: smooth; }
     body {
-      background:
-        radial-gradient(circle at top left, rgba(74,94,247,0.08), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(58,130,246,0.08), transparent 25%),
-        var(--bg);
+      background: var(--bg);
       color: var(--text);
       font-family: var(--font);
       font-size: 16px;
@@ -52,7 +49,7 @@
     a:focus-visible, button:focus-visible, input:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
-      border-radius: 8px;
+      border-radius: 4px;
     }
 
     .container { width: min(100% - 32px, 1140px); margin-inline: auto; }
@@ -64,40 +61,12 @@
       align-items: center;
       justify-content: center;
       padding: 32px 0;
-      position: relative;
-      overflow: hidden;
-    }
-    #lock-screen::before,
-    #lock-screen::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(60px);
-      opacity: 0.35;
-      pointer-events: none;
-    }
-    #lock-screen::before {
-      width: 260px;
-      height: 260px;
-      background: rgba(74, 94, 247, 0.25);
-      top: 14%;
-      left: 12%;
-    }
-    #lock-screen::after {
-      width: 220px;
-      height: 220px;
-      background: rgba(96, 165, 250, 0.18);
-      bottom: 10%;
-      right: 12%;
     }
     .lock-card {
-      position: relative;
-      z-index: 1;
-      background: rgba(255, 255, 255, 0.76);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(74, 94, 247, 0.12);
-      border-radius: 28px;
-      padding: 48px 42px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 36px;
       box-shadow: var(--shadow);
       width: min(100%, 440px);
       text-align: center;
@@ -106,28 +75,35 @@
       width: 62px;
       height: 62px;
       border-radius: 18px;
-      background: linear-gradient(135deg, var(--accent-soft), rgba(74, 94, 247, 0.2));
+      background: var(--accent-soft);
       display: inline-flex;
       align-items: center;
       justify-content: center;
       color: var(--accent);
       margin-bottom: 22px;
-      box-shadow: inset 0 0 0 1px rgba(74,94,247,0.1);
+      box-shadow: none;
     }
     .lock-icon svg { width: 26px; height: 26px; }
     .lock-card h1 { font-size: clamp(1.7rem, 3vw, 2.1rem); font-weight: 750; letter-spacing: -0.03em; margin-bottom: 10px; }
     .lock-card p { color: var(--text-dim); font-size: 0.96rem; margin-bottom: 28px; }
     .lock-card form { text-align: left; }
+    .lock-card label {
+      display: block;
+      color: var(--text-dim);
+      font-size: 0.84rem;
+      font-weight: 600;
+      margin: 0 0 6px;
+    }
     .lock-card input {
       width: 100%;
       font-family: var(--font);
       font-size: 1rem;
       color: var(--text);
-      background: rgba(245,247,251,0.9);
+      background: var(--bg);
       border: 1px solid var(--border-strong);
       border-radius: 12px;
       padding: 14px 16px;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
     .lock-card input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-glow); outline: none; }
@@ -140,13 +116,14 @@
       padding: 14px 18px;
       border-radius: 12px;
       border: none;
-      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      background: var(--accent);
       color: #fff;
       cursor: pointer;
-      transition: transform 0.2s var(--ease), box-shadow 0.2s ease, filter 0.2s ease;
-      box-shadow: 0 10px 20px -12px rgba(74,94,247,0.9);
+      transition: background 0.2s ease;
+      box-shadow: none;
     }
-    .lock-card button:hover { transform: translateY(-1px); box-shadow: 0 18px 24px -16px rgba(74,94,247,0.9); }
+    .lock-card button:hover { background: var(--accent-strong); }
+    .lock-card button:disabled { opacity: 0.6; cursor: wait; }
     .lock-card .back-link { display: inline-block; margin-top: 20px; font-size: 0.85rem; color: var(--text-faint); }
 
     /* ---- Admin ---- */
@@ -155,9 +132,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(245,247,251,0.8);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.96);
       border-bottom: 1px solid var(--border);
     }
     .admin-nav-inner {
@@ -182,10 +157,10 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), #7b8cff);
-      box-shadow: 0 0 0 6px rgba(74,94,247,0.09);
+      background: var(--accent);
     }
     .admin-actions { display: flex; gap: 10px; }
+    .admin-user { color: var(--text-faint); font-size: 0.8rem; }
     .btn-sm {
       font-family: var(--font);
       font-size: 0.84rem;
@@ -200,7 +175,7 @@
     }
     .btn-sm:hover { color: var(--text); border-color: rgba(15,15,20,0.25); transform: translateY(-1px); background: rgba(255,255,255,0.95); }
     .btn-sm.primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      background: var(--accent);
       border-color: transparent;
       color: #fff;
     }
@@ -224,7 +199,7 @@
       justify-content: center;
       font-family: var(--mono);
       font-size: 0.75rem;
-      background: linear-gradient(135deg, var(--accent-soft), rgba(74,94,247,0.18));
+      background: var(--accent-soft);
       color: var(--accent);
       border-radius: 999px;
       padding: 5px 10px;
@@ -242,8 +217,7 @@
       padding: 16px 18px;
       border: 1px solid var(--border);
       border-radius: 18px;
-      background: rgba(255,255,255,0.75);
-      box-shadow: var(--shadow);
+      background: var(--card);
     }
     .search-wrap {
       position: relative;
@@ -264,7 +238,7 @@
       height: 46px;
       border-radius: 12px;
       border: 1px solid var(--border-strong);
-      background: rgba(245,247,251,0.9);
+      background: var(--bg);
       color: var(--text);
       padding: 0 16px 0 42px;
       font: inherit;
@@ -285,12 +259,12 @@
       padding: 8px 12px;
       border-radius: 999px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
-    .chip:hover { border-color: rgba(74,94,247,0.25); color: var(--text); }
+    .chip:hover { border-color: var(--border-strong); color: var(--text); }
     .chip.active {
-      background: rgba(74,94,247,0.1);
-      border-color: rgba(74,94,247,0.2);
+      background: var(--accent-soft);
+      border-color: var(--accent);
       color: var(--accent);
     }
 
@@ -301,11 +275,11 @@
       margin-bottom: 22px;
     }
     .stat-card {
-      background: rgba(255,255,255,0.8);
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 18px;
       padding: 18px 18px 16px;
-      box-shadow: var(--shadow);
+      box-shadow: none;
     }
     .stat-label {
       display: block;
@@ -326,14 +300,14 @@
 
     .msg-list { display: flex; flex-direction: column; gap: 14px; }
     .msg-card {
-      background: rgba(255,255,255,0.78);
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 20px 20px 16px;
       box-shadow: var(--shadow);
-      transition: border-color 0.2s ease, transform 0.2s ease;
+      transition: border-color 0.2s ease, background 0.2s ease;
     }
-    .msg-card:hover { border-color: rgba(74,94,247,0.18); transform: translateY(-1px); }
+    .msg-card:hover { border-color: var(--border-strong); }
     .msg-top {
       display: flex;
       flex-wrap: wrap;
@@ -392,12 +366,13 @@
       padding: 7px 14px;
       border-radius: 9px;
       border: 1px solid var(--border-strong);
-      background: rgba(255,255,255,0.7);
+      background: var(--card);
       color: var(--text-dim);
       cursor: pointer;
       text-decoration: none;
       transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
     }
+    .msg-actions a[aria-disabled="true"] { cursor: not-allowed; opacity: 0.65; }
     .msg-actions a:hover, .msg-actions button:hover { color: var(--text); border-color: rgba(15,15,20,0.28); transform: translateY(-1px); }
     .msg-actions .danger:hover { color: var(--red); border-color: rgba(196,39,39,0.28); }
 
@@ -405,9 +380,9 @@
       text-align: center;
       padding: 60px 20px 40px;
       color: var(--text-faint);
-      background: rgba(255,255,255,0.6);
-      border: 1px dashed rgba(74,94,247,0.12);
-      border-radius: 20px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
     }
     .empty-state .big {
       font-size: 1.08rem;
@@ -425,6 +400,15 @@
       font-size: 0.88rem;
     }
     .error-state { color: var(--red); }
+    .action-status {
+      min-height: 24px;
+      margin: 0 0 12px;
+      color: var(--text-dim);
+      font-size: 0.88rem;
+    }
+    .action-status.error { color: var(--red); }
+    .reply-note { color: var(--text-faint); font-size: 0.78rem; margin-top: 8px; }
+    .btn-sm:disabled, .msg-actions button:disabled { opacity: 0.55; cursor: wait; transform: none; }
 
     footer { border-top: 1px solid var(--border); padding: 28px 0; }
     .footer-inner { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; }
@@ -438,10 +422,12 @@
 
     @media (max-width: 600px) {
       .lock-card { padding: 36px 26px; }
-      .stats-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .admin-nav-inner { width: min(100% - 24px, 1180px); }
       .msg-date { margin-left: 0; width: 100%; }
       .page-head h2 { align-items: flex-start; }
+      .admin-actions { gap: 6px; }
+      .btn-sm { padding: 8px 10px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -459,11 +445,14 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         </span>
         <h1>Private Messages</h1>
-        <p>Enter your password to view messages from your contact form.</p>
+        <p>Sign in with your admin account to securely view contact messages.</p>
         <form id="lock-form">
-          <input type="password" id="lock-input" placeholder="Password" autocomplete="current-password" aria-label="Admin password" />
-          <p class="error" id="lock-error"></p>
-          <button type="submit">Unlock</button>
+          <label for="login-email">Admin email</label>
+          <input type="email" id="login-email" placeholder="you@example.com" autocomplete="username" required />
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" placeholder="Password" autocomplete="current-password" required />
+          <p class="error" id="lock-error" role="alert" aria-live="polite"></p>
+          <button type="submit" id="login-btn">Sign in</button>
         </form>
         <a class="back-link" href="index.html">← Back to portfolio</a>
       </div>
@@ -476,9 +465,10 @@
       <div class="admin-nav-inner">
         <span class="admin-title"><span class="dot" aria-hidden="true"></span>Messages</span>
         <div class="admin-actions">
-          <button class="btn-sm primary" id="export-btn" type="button">Export CSV</button>
-          <button class="btn-sm" id="refresh-btn" type="button">Refresh</button>
-          <button class="btn-sm" id="logout-btn" type="button">Lock</button>
+          <span class="admin-user" id="admin-user"></span>
+          <button class="btn-sm primary" id="export-btn" type="button" disabled>Export CSV</button>
+          <button class="btn-sm" id="refresh-btn" type="button" disabled>Refresh</button>
+          <button class="btn-sm" id="logout-btn" type="button">Sign out</button>
         </div>
       </div>
     </header>
@@ -511,7 +501,7 @@
             <span class="stat-value" id="stat-categories">0</span>
           </div>
           <div class="stat-card">
-            <span class="stat-label">Replies</span>
+            <span class="stat-label">Email contacts</span>
             <span class="stat-value" id="stat-replies">0</span>
           </div>
           <div class="stat-card">
@@ -520,6 +510,7 @@
           </div>
         </div>
 
+        <p class="action-status" id="action-status" role="status" aria-live="polite"></p>
         <div id="msg-container">
           <p class="loading-state">Loading messages…</p>
         </div>
@@ -534,6 +525,7 @@
     </footer>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     (function () {
       "use strict";
@@ -541,17 +533,26 @@
       /* ================= CONFIG ================= */
       var SUPABASE_URL = "https://aphjgfxjtmtektxovytk.supabase.co";
       var SUPABASE_KEY = "sb_publishable_ITyabgRmeuQ5YFUhQX6l4g_Kr7J53Ne";
-      var ADMIN_PASSWORD = "KP";   // ← your admin password
+      var ADMIN_EMAIL = "naveenbv3011@gmail.com";
+      var supabaseClient = window.supabase
+        ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+        : null;
 
       var lockScreen = document.getElementById("lock-screen");
       var adminScreen = document.getElementById("admin-screen");
       var lockForm = document.getElementById("lock-form");
-      var lockInput = document.getElementById("lock-input");
+      var loginEmail = document.getElementById("login-email");
+      var loginPassword = document.getElementById("login-password");
+      var loginButton = document.getElementById("login-btn");
       var lockError = document.getElementById("lock-error");
       var msgContainer = document.getElementById("msg-container");
       var msgCount = document.getElementById("msg-count");
       var searchInput = document.getElementById("search-input");
       var chipGroup = document.getElementById("chip-group");
+      var actionStatus = document.getElementById("action-status");
+      var adminUser = document.getElementById("admin-user");
+      var refreshButton = document.getElementById("refresh-btn");
+      var exportButton = document.getElementById("export-btn");
       var statTotal = document.getElementById("stat-total");
       var statCategories = document.getElementById("stat-categories");
       var statReplies = document.getElementById("stat-replies");
@@ -562,30 +563,56 @@
       var searchTerm = "";
       var unlocked = false;
 
-      lockForm.addEventListener("submit", function (e) {
+      lockForm.addEventListener("submit", async function (e) {
         e.preventDefault();
-        if (lockInput.value === ADMIN_PASSWORD) {
-          unlocked = true;
-          lockError.textContent = "";
-          lockScreen.style.display = "none";
-          adminScreen.style.display = "block";
-          loadMessages();
-        } else {
-          lockError.textContent = "Incorrect password. Try again.";
-          lockInput.value = "";
-          lockInput.focus();
+        if (!supabaseClient) {
+          lockError.textContent = "Supabase sign-in could not load. Check your connection and try again.";
+          return;
+        }
+
+        lockError.textContent = "";
+        loginButton.disabled = true;
+        loginButton.textContent = "Signing in…";
+        try {
+          var result = await supabaseClient.auth.signInWithPassword({
+            email: loginEmail.value.trim(),
+            password: loginPassword.value
+          });
+          if (result.error) throw result.error;
+          if (!isAdmin(result.data.user)) {
+            await supabaseClient.auth.signOut();
+            throw new Error("This account is not allowed to access the admin panel.");
+          }
+          loginPassword.value = "";
+          showAdmin(result.data.user);
+          await loadMessages();
+        } catch (err) {
+          console.error("Admin sign-in failed:", err);
+          lockError.textContent = err.message || "Could not sign in. Check your details and try again.";
+          loginPassword.value = "";
+          loginPassword.focus();
+        } finally {
+          loginButton.disabled = false;
+          loginButton.textContent = "Sign in";
         }
       });
 
-      document.getElementById("logout-btn").addEventListener("click", function () {
-        unlocked = false;
-        adminScreen.style.display = "none";
-        lockScreen.style.display = "flex";
-        lockInput.value = "";
-        lockInput.focus();
+      document.getElementById("logout-btn").addEventListener("click", async function () {
+        lockAdmin();
+        lockError.textContent = "";
+        loginPassword.value = "";
+        loginEmail.focus();
+        if (!supabaseClient) return;
+        try {
+          var result = await supabaseClient.auth.signOut();
+          if (result.error) throw result.error;
+        } catch (err) {
+          console.error("Admin sign-out failed:", err);
+          lockError.textContent = "You have been locked out on this page, but sign-out failed: " + err.message;
+        }
       });
 
-      document.getElementById("refresh-btn").addEventListener("click", loadMessages);
+      refreshButton.addEventListener("click", loadMessages);
       document.getElementById("export-btn").addEventListener("click", exportMessagesCsv);
       searchInput.addEventListener("input", function () {
         searchTerm = searchInput.value.trim().toLowerCase();
@@ -599,11 +626,67 @@
         renderMessages();
       });
 
-      function esc(str) {
-        return String(str == null ? "" : str)
-          .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+      function isAdmin(user) {
+        return Boolean(user && user.email &&
+          user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase());
       }
+
+      function showAdmin(user) {
+        unlocked = true;
+        lockError.textContent = "";
+        lockScreen.style.display = "none";
+        adminScreen.style.display = "block";
+        adminUser.textContent = user.email;
+        setActionStatus("");
+      }
+
+      function lockAdmin() {
+        unlocked = false;
+        allMessages = [];
+        currentFilter = "all";
+        searchTerm = "";
+        searchInput.value = "";
+        adminScreen.style.display = "none";
+        lockScreen.style.display = "flex";
+        adminUser.textContent = "";
+        msgContainer.replaceChildren();
+        chipGroup.replaceChildren();
+        msgCount.textContent = "0";
+        statTotal.textContent = "0";
+        statCategories.textContent = "0";
+        statReplies.textContent = "0";
+        statLatest.textContent = "—";
+        setActionStatus("");
+        exportButton.disabled = true;
+        refreshButton.disabled = true;
+      }
+
+      function setActionStatus(message, isError) {
+        actionStatus.textContent = message || "";
+        actionStatus.classList.toggle("error", Boolean(isError));
+      }
+
+      async function restoreSession() {
+        if (!supabaseClient) {
+          lockError.textContent = "Supabase sign-in could not load. Check your connection and try again.";
+          return;
+        }
+        var result = await supabaseClient.auth.getSession();
+        if (result.error) throw result.error;
+        var user = result.data.session && result.data.session.user;
+        if (!user) return;
+        if (!isAdmin(user)) {
+          await supabaseClient.auth.signOut();
+          return;
+        }
+        showAdmin(user);
+        await loadMessages();
+      }
+
+      restoreSession().catch(function (err) {
+        console.error("Could not restore admin session:", err);
+        lockError.textContent = "Could not restore your session: " + err.message;
+      });
 
       function trimText(str, maxLen) {
         var value = String(str == null ? "" : str).trim();
@@ -646,28 +729,42 @@
       }
 
       function renderChipGroup() {
-        var categories = {};
+        var categories = [];
         allMessages.forEach(function (m) {
           var category = String(m.category || "Other").trim() || "Other";
-          categories[category] = true;
+          if (categories.indexOf(category) === -1) categories.push(category);
         });
-
-        var labels = Object.keys(categories).sort(function (a, b) {
+        categories.sort(function (a, b) {
           return a.localeCompare(b);
         });
 
-        var buttons = ['<button type="button" class="chip ' + (currentFilter === "all" ? "active" : "") + '" data-filter="all">All</button>'];
-        labels.forEach(function (label) {
-          var active = currentFilter === label.toLowerCase() ? "active" : "";
-          buttons.push('<button type="button" class="chip ' + active + '" data-filter="' + label.toLowerCase() + '">' + esc(label) + '</button>');
-        });
+        if (currentFilter !== "all" && !categories.some(function (category) {
+          return category.toLowerCase() === currentFilter;
+        })) {
+          currentFilter = "all";
+        }
 
-        chipGroup.innerHTML = buttons.join("");
+        chipGroup.replaceChildren();
+        var allButton = document.createElement("button");
+        allButton.type = "button";
+        allButton.className = "chip" + (currentFilter === "all" ? " active" : "");
+        allButton.dataset.filter = "all";
+        allButton.textContent = "All";
+        chipGroup.appendChild(allButton);
+
+        categories.forEach(function (label) {
+          var button = document.createElement("button");
+          button.type = "button";
+          button.className = "chip" + (currentFilter === label.toLowerCase() ? " active" : "");
+          button.dataset.filter = label.toLowerCase();
+          button.textContent = label;
+          chipGroup.appendChild(button);
+        });
       }
 
       function renderSummary(messages) {
         var total = messages.length;
-        var uniqueCategories = {};
+        var uniqueCategories = Object.create(null);
         var replyCount = 0;
 
         messages.forEach(function (m) {
@@ -697,31 +794,38 @@
 
       async function loadMessages() {
         if (!unlocked) return;
+        refreshButton.disabled = true;
+        exportButton.disabled = true;
+        setActionStatus("Loading messages…");
         msgContainer.innerHTML = '<p class="loading-state">Loading messages…</p>';
         try {
-          var res = await fetch(
-            SUPABASE_URL + "/rest/v1/messages?select=*&order=created_at.desc",
-            {
-              headers: {
-                "apikey": SUPABASE_KEY,
-                "Authorization": "Bearer " + SUPABASE_KEY
-              }
-            }
-          );
-          if (!res.ok) {
-            var errText = await res.text();
-            throw new Error(res.status + " " + errText);
-          }
-          allMessages = await res.json();
+          var result = await supabaseClient
+            .from("messages")
+            .select("id, name, email, category, message, created_at")
+            .order("created_at", { ascending: false });
+          if (result.error) throw result.error;
+          if (!unlocked) return;
+          if (!Array.isArray(result.data)) throw new Error("Supabase returned an invalid messages response.");
+          allMessages = result.data;
           renderSummary(allMessages);
           renderChipGroup();
           renderMessages();
+          setActionStatus(allMessages.length
+            ? "Showing " + allMessages.length + " message" + (allMessages.length === 1 ? "" : "s") + "."
+            : "Your messages are up to date.");
         } catch (err) {
-          console.error(err);
-          msgContainer.innerHTML =
-            '<div class="error-state">Could not load messages.<br/>' +
-            'Make sure the <code>messages</code> table exists in Supabase (run the SQL query from the setup steps).<br/><br/>' +
-            esc(err.message) + "</div>";
+          if (!unlocked) return;
+          console.error("Could not load messages:", err);
+          var error = document.createElement("div");
+          error.className = "error-state";
+          error.textContent = "Could not load messages. Check your Supabase Auth session and RLS setup. " +
+            (err.message || "Unknown error.");
+          msgContainer.replaceChildren(error);
+          msgCount.textContent = "0";
+          setActionStatus("Messages could not be loaded.", true);
+        } finally {
+          refreshButton.disabled = !unlocked;
+          exportButton.disabled = !unlocked || allMessages.length === 0;
         }
       }
 
@@ -763,8 +867,12 @@
 
           var email = document.createElement("a");
           email.className = "msg-email";
-          email.href = "mailto:" + (m.email || "");
           email.textContent = m.email || "No email";
+          if (isValidEmail(m.email)) {
+            email.href = "mailto:" + encodeURIComponent(m.email.trim());
+          } else {
+            email.removeAttribute("href");
+          }
 
           var cat = document.createElement("span");
           cat.className = "msg-cat";
@@ -787,10 +895,18 @@
           actions.className = "msg-actions";
 
           var reply = document.createElement("a");
-          reply.href = "mailto:" + (m.email || "") +
-            "?subject=" + encodeURIComponent("Re: " + (m.category || "Message") + " from your portfolio") +
-            "&body=" + encodeURIComponent("Hi " + (m.name || "") + ",\n\n");
-          reply.textContent = "Reply";
+          reply.className = "reply-link";
+          reply.textContent = isValidEmail(m.email) ? "Reply by email" : "No valid reply address";
+          if (isValidEmail(m.email)) {
+            var subject = "Re: " + (m.category || "Message") + " — Naveen B V";
+            var bodyText = "Hi " + (m.name || "there") + ",\n\n\n\n" +
+              "— Original message —\n" + (m.message || "");
+            reply.href = "mailto:" + encodeURIComponent(m.email.trim()) +
+              "?subject=" + encodeURIComponent(subject) +
+              "&body=" + encodeURIComponent(bodyText);
+          } else {
+            reply.setAttribute("aria-disabled", "true");
+          }
 
           var del = document.createElement("button");
           del.className = "danger";
@@ -798,7 +914,7 @@
           del.textContent = "Delete";
           del.addEventListener("click", function () {
             if (!confirm("Delete this message from " + (m.name || "unknown") + "?")) return;
-            deleteMessage(m.id, card);
+            deleteMessage(m, card, del);
           });
 
           actions.appendChild(reply);
@@ -807,6 +923,10 @@
           card.appendChild(top);
           card.appendChild(body);
           card.appendChild(actions);
+          var replyNote = document.createElement("p");
+          replyNote.className = "reply-note";
+          replyNote.textContent = "Reply opens your email app; send the message there.";
+          card.appendChild(replyNote);
           list.appendChild(card);
         });
 
@@ -814,54 +934,65 @@
         msgContainer.appendChild(list);
       }
 
-      async function deleteMessage(id, cardEl) {
+      function isValidEmail(value) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || "").trim());
+      }
+
+      async function deleteMessage(message, cardEl, button) {
+        if (!unlocked) return;
+        if (!message.id) {
+          setActionStatus("This message has no database ID and cannot be deleted.", true);
+          return;
+        }
+        button.disabled = true;
+        button.textContent = "Deleting…";
+        setActionStatus("Deleting message…");
         try {
-          var res = await fetch(SUPABASE_URL + "/rest/v1/messages?id=eq." + id, {
-            method: "DELETE",
-            headers: {
-              "apikey": SUPABASE_KEY,
-              "Authorization": "Bearer " + SUPABASE_KEY
-            }
-          });
-          if (res.ok) {
-            cardEl.style.opacity = "0.4";
-            cardEl.style.transition = "opacity 0.2s ease";
-            setTimeout(function () {
-              loadMessages();
-            }, 250);
-          } else {
-            alert("Could not delete message. Check that your Supabase policies allow DELETE, or delete it from the Supabase dashboard (Table Editor → messages).");
+          var result = await supabaseClient
+            .from("messages")
+            .delete()
+            .eq("id", message.id)
+            .select("id");
+          if (result.error) throw result.error;
+          if (!unlocked) return;
+          if (!result.data || result.data.length !== 1) {
+            throw new Error("No message was deleted. The row may already be gone or the admin DELETE policy is missing.");
           }
+          cardEl.remove();
+          allMessages = allMessages.filter(function (item) {
+            return item.id !== message.id;
+          });
+          renderSummary(allMessages);
+          renderChipGroup();
+          renderMessages();
+          exportButton.disabled = allMessages.length === 0;
+          setActionStatus("Message deleted.");
         } catch (err) {
-          console.error(err);
-          alert("Could not delete message (network error).");
+          console.error("Could not delete message:", err);
+          button.disabled = false;
+          button.textContent = "Delete";
+          setActionStatus("Could not delete message: " + (err.message || "Unknown error."), true);
         }
       }
 
       function exportMessagesCsv() {
         var rows = getFilteredMessages();
         if (!rows.length) {
-          alert("There are no messages to export for the current view.");
+          setActionStatus("There are no messages to export for the current filters.", true);
           return;
         }
 
         var headers = ["Name", "Email", "Category", "Created At", "Message"];
-        var csv = [headers.join(",")];
+        var csv = [headers.map(csvCell).join(",")];
 
         rows.forEach(function (m) {
           var values = [
-            (m.name || "").replace(/"/g, '""'),
-            (m.email || "").replace(/"/g, '""'),
-            (m.category || "").replace(/"/g, '""'),
-            (m.created_at || "").replace(/"/g, '""'),
-            (m.message || "").replace(/"/g, '""')
-          ].map(function (value) {
-            return '"' + String(value).replace(/\r?\n/g, " ") + '"';
-          });
-          csv.push(values.join(","));
+            m.name, m.email, m.category, m.created_at, m.message
+          ];
+          csv.push(values.map(csvCell).join(","));
         });
 
-        var blob = new Blob([csv.join("\n")], { type: "text/csv;charset=utf-8;" });
+        var blob = new Blob(["\ufeff" + csv.join("\r\n")], { type: "text/csv;charset=utf-8;" });
         var url = URL.createObjectURL(blob);
         var link = document.createElement("a");
         link.href = url;
@@ -869,7 +1000,16 @@
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        URL.revokeObjectURL(url);
+        window.setTimeout(function () {
+          URL.revokeObjectURL(url);
+        }, 1000);
+        setActionStatus("Exported " + rows.length + " message" + (rows.length === 1 ? "" : "s") + " to CSV.");
+      }
+
+      function csvCell(value) {
+        var text = String(value == null ? "" : value).replace(/\r\n?|\n/g, " ");
+        if (/^[\s\u0000-\u001f]*[=+\-@]/.test(text)) text = "'" + text;
+        return '"' + text.replace(/"/g, '""') + '"';
       }
     })();
   </script>
