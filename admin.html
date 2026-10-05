@@ -11,28 +11,35 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #fafafa;
-      --bg-soft: #f1f1f3;
-      --card: #ffffff;
-      --border: rgba(15, 15, 20, 0.09);
-      --border-strong: rgba(15, 15, 20, 0.18);
-      --text: #141419;
-      --text-dim: #4b4b55;
-      --text-faint: #8a8a95;
-      --accent: #4f5dd5;
-      --accent-soft: rgba(79, 93, 213, 0.09);
-      --green: #15803d;
-      --red: #b91c1c;
+      --bg: #f5f7fb;
+      --bg-soft: #edf1f8;
+      --card: rgba(255, 255, 255, 0.9);
+      --card-strong: #ffffff;
+      --border: rgba(15, 15, 20, 0.08);
+      --border-strong: rgba(15, 15, 20, 0.14);
+      --text: #161a22;
+      --text-dim: #465066;
+      --text-faint: #7a8193;
+      --accent: #4a5ef7;
+      --accent-strong: #3c4ce1;
+      --accent-soft: rgba(74, 94, 247, 0.1);
+      --accent-glow: rgba(74, 94, 247, 0.15);
+      --green: #1a7f4a;
+      --red: #c42727;
+      --yellow: #b7791f;
       --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --mono: "SF Mono", "JetBrains Mono", "Fira Code", Consolas, monospace;
-      --radius: 12px;
+      --radius: 16px;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
-      --shadow: 0 1px 2px rgba(15,15,20,0.04), 0 8px 28px -12px rgba(15,15,20,0.10);
+      --shadow: 0 1px 2px rgba(15,15,20,0.03), 0 18px 40px -22px rgba(30,41,59,0.25);
     }
 
     html { scroll-behavior: smooth; }
     body {
-      background: var(--bg);
+      background:
+        radial-gradient(circle at top left, rgba(74,94,247,0.08), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(58,130,246,0.08), transparent 25%),
+        var(--bg);
       color: var(--text);
       font-family: var(--font);
       font-size: 16px;
@@ -45,10 +52,10 @@
     a:focus-visible, button:focus-visible, input:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
-      border-radius: 4px;
+      border-radius: 8px;
     }
 
-    .container { width: min(100% - 40px, 860px); margin-inline: auto; }
+    .container { width: min(100% - 32px, 1140px); margin-inline: auto; }
 
     /* ---- Lock screen ---- */
     #lock-screen {
@@ -56,59 +63,90 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px 0;
+      padding: 32px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    #lock-screen::before,
+    #lock-screen::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    #lock-screen::before {
+      width: 260px;
+      height: 260px;
+      background: rgba(74, 94, 247, 0.25);
+      top: 14%;
+      left: 12%;
+    }
+    #lock-screen::after {
+      width: 220px;
+      height: 220px;
+      background: rgba(96, 165, 250, 0.18);
+      bottom: 10%;
+      right: 12%;
     }
     .lock-card {
-      background: var(--card);
-      border: 1px solid var(--border-strong);
-      border-radius: 20px;
-      padding: 48px 44px;
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.76);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(74, 94, 247, 0.12);
+      border-radius: 28px;
+      padding: 48px 42px;
       box-shadow: var(--shadow);
-      width: 100%;
-      max-width: 420px;
+      width: min(100%, 440px);
       text-align: center;
     }
     .lock-icon {
-      width: 52px; height: 52px;
-      border-radius: 14px;
-      background: var(--accent-soft);
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--accent-soft), rgba(74, 94, 247, 0.2));
       display: inline-flex;
       align-items: center;
       justify-content: center;
       color: var(--accent);
-      margin-bottom: 20px;
+      margin-bottom: 22px;
+      box-shadow: inset 0 0 0 1px rgba(74,94,247,0.1);
     }
-    .lock-icon svg { width: 24px; height: 24px; }
-    .lock-card h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
-    .lock-card p { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 28px; }
+    .lock-icon svg { width: 26px; height: 26px; }
+    .lock-card h1 { font-size: clamp(1.7rem, 3vw, 2.1rem); font-weight: 750; letter-spacing: -0.03em; margin-bottom: 10px; }
+    .lock-card p { color: var(--text-dim); font-size: 0.96rem; margin-bottom: 28px; }
+    .lock-card form { text-align: left; }
     .lock-card input {
       width: 100%;
       font-family: var(--font);
       font-size: 1rem;
       color: var(--text);
-      background: var(--bg);
+      background: rgba(245,247,251,0.9);
       border: 1px solid var(--border-strong);
-      border-radius: 10px;
-      padding: 13px 16px;
-      margin-bottom: 16px;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
-    .lock-card input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); outline: none; }
-    .lock-card .error { color: var(--red); font-size: 0.85rem; min-height: 22px; margin-bottom: 12px; }
+    .lock-card input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-glow); outline: none; }
+    .lock-card .error { color: var(--red); font-size: 0.85rem; min-height: 20px; margin-bottom: 12px; }
     .lock-card button {
       width: 100%;
       font-family: var(--font);
       font-size: 0.98rem;
-      font-weight: 650;
-      padding: 14px;
+      font-weight: 700;
+      padding: 14px 18px;
       border-radius: 12px;
       border: none;
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
       color: #fff;
       cursor: pointer;
-      transition: background 0.2s, transform 0.2s var(--ease);
+      transition: transform 0.2s var(--ease), box-shadow 0.2s ease, filter 0.2s ease;
+      box-shadow: 0 10px 20px -12px rgba(74,94,247,0.9);
     }
-    .lock-card button:hover { background: #5f6ee5; transform: translateY(-1px); }
+    .lock-card button:hover { transform: translateY(-1px); box-shadow: 0 18px 24px -16px rgba(74,94,247,0.9); }
     .lock-card .back-link { display: inline-block; margin-top: 20px; font-size: 0.85rem; color: var(--text-faint); }
 
     /* ---- Admin ---- */
@@ -117,9 +155,9 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(250,250,250,0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      background: rgba(245,247,251,0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
     .admin-nav-inner {
@@ -128,103 +166,282 @@
       justify-content: space-between;
       gap: 16px;
       padding: 14px 0;
-      width: min(100% - 40px, 1120px);
+      width: min(100% - 32px, 1180px);
       margin-inline: auto;
     }
-    .admin-title { font-weight: 700; font-size: 1rem; letter-spacing: -0.02em; display: flex; align-items: center; gap: 9px; }
-    .admin-title .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .admin-title {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+    }
+    .admin-title .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #7b8cff);
+      box-shadow: 0 0 0 6px rgba(74,94,247,0.09);
+    }
     .admin-actions { display: flex; gap: 10px; }
     .btn-sm {
       font-family: var(--font);
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       font-weight: 600;
-      padding: 8px 15px;
-      border-radius: 9px;
+      padding: 9px 14px;
+      border-radius: 10px;
       border: 1px solid var(--border-strong);
-      background: var(--card);
+      background: rgba(255,255,255,0.7);
       color: var(--text-dim);
       cursor: pointer;
-      transition: color 0.2s, border-color 0.2s, transform 0.2s var(--ease);
+      transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s var(--ease), background 0.2s ease;
     }
-    .btn-sm:hover { color: var(--text); border-color: rgba(15,15,20,0.3); transform: translateY(-1px); }
+    .btn-sm:hover { color: var(--text); border-color: rgba(15,15,20,0.25); transform: translateY(-1px); background: rgba(255,255,255,0.95); }
+    .btn-sm.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      border-color: transparent;
+      color: #fff;
+    }
 
-    main { padding: 56px 0 90px; }
-    .page-head { margin-bottom: 32px; }
-    .page-head h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 750; letter-spacing: -0.03em; margin-bottom: 6px; }
+    main { padding: 44px 0 90px; }
+    .page-head { margin-bottom: 22px; }
+    .page-head h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 780;
+      letter-spacing: -0.04em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
     .page-head p { color: var(--text-dim); font-size: 0.95rem; }
     .count-badge {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       font-family: var(--mono);
       font-size: 0.75rem;
-      background: var(--accent-soft);
+      background: linear-gradient(135deg, var(--accent-soft), rgba(74,94,247,0.18));
       color: var(--accent);
-      border-radius: 100px;
-      padding: 3px 12px;
-      margin-left: 10px;
-      vertical-align: middle;
+      border-radius: 999px;
+      padding: 5px 10px;
+      min-width: 34px;
+      height: 28px;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding: 16px 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.75);
+      box-shadow: var(--shadow);
+    }
+    .search-wrap {
+      position: relative;
+      min-width: min(100%, 330px);
+      flex: 1 1 260px;
+    }
+    .search-wrap svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      color: var(--text-faint);
+    }
+    .search-wrap input {
+      width: 100%;
+      height: 46px;
+      border-radius: 12px;
+      border: 1px solid var(--border-strong);
+      background: rgba(245,247,251,0.9);
+      color: var(--text);
+      padding: 0 16px 0 42px;
+      font: inherit;
+    }
+    .chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+    .chip {
+      border: 1px solid var(--border-strong);
+      background: rgba(255,255,255,0.8);
+      color: var(--text-dim);
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .chip:hover { border-color: rgba(74,94,247,0.25); color: var(--text); }
+    .chip.active {
+      background: rgba(74,94,247,0.1);
+      border-color: rgba(74,94,247,0.2);
+      color: var(--accent);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow);
+    }
+    .stat-label {
+      display: block;
+      color: var(--text-faint);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      font-family: var(--mono);
+    }
+    .stat-value {
+      display: block;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 750;
+      letter-spacing: -0.04em;
+      color: var(--text);
     }
 
     .msg-list { display: flex; flex-direction: column; gap: 14px; }
     .msg-card {
-      background: var(--card);
+      background: rgba(255,255,255,0.78);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 22px 24px;
+      padding: 20px 20px 16px;
       box-shadow: var(--shadow);
-      transition: border-color 0.25s;
+      transition: border-color 0.2s ease, transform 0.2s ease;
     }
-    .msg-card:hover { border-color: var(--border-strong); }
-    .msg-top { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 10px; }
-    .msg-name { font-weight: 650; font-size: 1rem; }
-    .msg-email { color: var(--accent); font-size: 0.88rem; font-family: var(--mono); word-break: break-all; }
+    .msg-card:hover { border-color: rgba(74,94,247,0.18); transform: translateY(-1px); }
+    .msg-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .msg-name {
+      font-weight: 700;
+      font-size: 1.02rem;
+      color: var(--text);
+    }
+    .msg-email {
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-family: var(--mono);
+      word-break: break-all;
+    }
     .msg-cat {
       font-family: var(--mono);
       font-size: 0.68rem;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--text-dim);
       background: var(--bg-soft);
       border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 3px 10px;
+      border-radius: 999px;
+      padding: 4px 9px;
     }
-    .msg-date { margin-left: auto; color: var(--text-faint); font-size: 0.78rem; font-family: var(--mono); }
-    .msg-body { color: var(--text-dim); font-size: 0.95rem; white-space: pre-wrap; word-break: break-word; }
-    .msg-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+    .msg-date {
+      margin-left: auto;
+      color: var(--text-faint);
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      white-space: nowrap;
+    }
+    .msg-body {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.7;
+    }
+    .msg-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
     .msg-actions a, .msg-actions button {
       font-family: var(--font);
       font-size: 0.82rem;
       font-weight: 600;
       padding: 7px 14px;
-      border-radius: 8px;
+      border-radius: 9px;
       border: 1px solid var(--border-strong);
-      background: var(--card);
+      background: rgba(255,255,255,0.7);
       color: var(--text-dim);
       cursor: pointer;
       text-decoration: none;
-      transition: color 0.2s, border-color 0.2s;
+      transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
     }
-    .msg-actions a:hover, .msg-actions button:hover { color: var(--text); border-color: rgba(15,15,20,0.3); }
-    .msg-actions .danger:hover { color: var(--red); border-color: rgba(220,38,38,0.35); }
+    .msg-actions a:hover, .msg-actions button:hover { color: var(--text); border-color: rgba(15,15,20,0.28); transform: translateY(-1px); }
+    .msg-actions .danger:hover { color: var(--red); border-color: rgba(196,39,39,0.28); }
 
     .empty-state {
       text-align: center;
-      padding: 80px 20px;
+      padding: 60px 20px 40px;
       color: var(--text-faint);
+      background: rgba(255,255,255,0.6);
+      border: 1px dashed rgba(74,94,247,0.12);
+      border-radius: 20px;
     }
-    .empty-state .big { font-size: 1.15rem; font-weight: 600; color: var(--text-dim); margin-bottom: 6px; }
+    .empty-state .big {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
     .empty-state p { font-size: 0.9rem; }
 
-    .loading-state, .error-state { text-align: center; padding: 80px 20px; color: var(--text-faint); font-family: var(--mono); font-size: 0.9rem; }
+    .loading-state, .error-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-faint);
+      font-family: var(--mono);
+      font-size: 0.88rem;
+    }
     .error-state { color: var(--red); }
 
     footer { border-top: 1px solid var(--border); padding: 28px 0; }
     .footer-inner { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; }
     .footer-inner .note { color: var(--text-faint); font-size: 0.78rem; font-family: var(--mono); }
 
+    @media (max-width: 820px) {
+      .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .toolbar { align-items: stretch; }
+      .chip-group { width: 100%; }
+    }
+
     @media (max-width: 600px) {
       .lock-card { padding: 36px 26px; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .admin-nav-inner { width: min(100% - 24px, 1180px); }
       .msg-date { margin-left: 0; width: 100%; }
+      .page-head h2 { align-items: flex-start; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -259,8 +476,9 @@
       <div class="admin-nav-inner">
         <span class="admin-title"><span class="dot" aria-hidden="true"></span>Messages</span>
         <div class="admin-actions">
-          <button class="btn-sm" id="refresh-btn">Refresh</button>
-          <button class="btn-sm" id="logout-btn">Lock</button>
+          <button class="btn-sm primary" id="export-btn" type="button">Export CSV</button>
+          <button class="btn-sm" id="refresh-btn" type="button">Refresh</button>
+          <button class="btn-sm" id="logout-btn" type="button">Lock</button>
         </div>
       </div>
     </header>
@@ -271,6 +489,37 @@
           <h2>Contact form messages<span class="count-badge" id="msg-count">0</span></h2>
           <p>Messages submitted through your contact page, stored in Supabase.</p>
         </div>
+
+        <div class="toolbar" aria-label="Message filters">
+          <label class="search-wrap" aria-label="Search messages">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="M20 20L16.65 16.65"></path>
+            </svg>
+            <input id="search-input" type="search" placeholder="Search by name, email, or message" />
+          </label>
+          <div class="chip-group" id="chip-group" aria-label="Category filters"></div>
+        </div>
+
+        <div class="stats-grid" aria-label="Message summary">
+          <div class="stat-card">
+            <span class="stat-label">Total</span>
+            <span class="stat-value" id="stat-total">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Categories</span>
+            <span class="stat-value" id="stat-categories">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Replies</span>
+            <span class="stat-value" id="stat-replies">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Latest</span>
+            <span class="stat-value" id="stat-latest">—</span>
+          </div>
+        </div>
+
         <div id="msg-container">
           <p class="loading-state">Loading messages…</p>
         </div>
@@ -301,8 +550,16 @@
       var lockError = document.getElementById("lock-error");
       var msgContainer = document.getElementById("msg-container");
       var msgCount = document.getElementById("msg-count");
+      var searchInput = document.getElementById("search-input");
+      var chipGroup = document.getElementById("chip-group");
+      var statTotal = document.getElementById("stat-total");
+      var statCategories = document.getElementById("stat-categories");
+      var statReplies = document.getElementById("stat-replies");
+      var statLatest = document.getElementById("stat-latest");
 
-      /* ---- Session (kept in memory only — cleared on refresh/close) ---- */
+      var allMessages = [];
+      var currentFilter = "all";
+      var searchTerm = "";
       var unlocked = false;
 
       lockForm.addEventListener("submit", function (e) {
@@ -329,11 +586,29 @@
       });
 
       document.getElementById("refresh-btn").addEventListener("click", loadMessages);
+      document.getElementById("export-btn").addEventListener("click", exportMessagesCsv);
+      searchInput.addEventListener("input", function () {
+        searchTerm = searchInput.value.trim().toLowerCase();
+        renderMessages();
+      });
+      chipGroup.addEventListener("click", function (event) {
+        var chip = event.target.closest(".chip");
+        if (!chip) return;
+        currentFilter = chip.dataset.filter || "all";
+        renderChipGroup();
+        renderMessages();
+      });
 
       function esc(str) {
         return String(str == null ? "" : str)
           .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
           .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+      }
+
+      function trimText(str, maxLen) {
+        var value = String(str == null ? "" : str).trim();
+        if (value.length <= maxLen) return value;
+        return value.slice(0, maxLen - 1) + "…";
       }
 
       function fmtDate(iso) {
@@ -343,6 +618,81 @@
             hour: "2-digit", minute: "2-digit"
           });
         } catch (e) { return String(iso).slice(0, 10); }
+      }
+
+      function getFilteredMessages() {
+        return allMessages.filter(function (m) {
+          var category = normalizeCategory(m.category);
+          if (currentFilter !== "all" && category !== currentFilter) {
+            return false;
+          }
+
+          if (!searchTerm) return true;
+
+          var haystack = [
+            m.name,
+            m.email,
+            m.message,
+            m.category
+          ].join(" ").toLowerCase();
+
+          return haystack.indexOf(searchTerm) !== -1;
+        });
+      }
+
+      function normalizeCategory(value) {
+        var category = String(value || "Other").trim() || "Other";
+        return category.toLowerCase();
+      }
+
+      function renderChipGroup() {
+        var categories = {};
+        allMessages.forEach(function (m) {
+          var category = String(m.category || "Other").trim() || "Other";
+          categories[category] = true;
+        });
+
+        var labels = Object.keys(categories).sort(function (a, b) {
+          return a.localeCompare(b);
+        });
+
+        var buttons = ['<button type="button" class="chip ' + (currentFilter === "all" ? "active" : "") + '" data-filter="all">All</button>'];
+        labels.forEach(function (label) {
+          var active = currentFilter === label.toLowerCase() ? "active" : "";
+          buttons.push('<button type="button" class="chip ' + active + '" data-filter="' + label.toLowerCase() + '">' + esc(label) + '</button>');
+        });
+
+        chipGroup.innerHTML = buttons.join("");
+      }
+
+      function renderSummary(messages) {
+        var total = messages.length;
+        var uniqueCategories = {};
+        var replyCount = 0;
+
+        messages.forEach(function (m) {
+          var category = String(m.category || "Other").trim() || "Other";
+          uniqueCategories[category] = true;
+          if (m.email) replyCount += 1;
+        });
+
+        statTotal.textContent = total;
+        statCategories.textContent = Object.keys(uniqueCategories).length || 0;
+        statReplies.textContent = replyCount;
+
+        if (!total) {
+          statLatest.textContent = "—";
+          return;
+        }
+
+        var latestMessage = messages.reduce(function (latest, current) {
+          if (!latest || new Date(current.created_at) > new Date(latest.created_at)) {
+            return current;
+          }
+          return latest;
+        }, null);
+
+        statLatest.textContent = latestMessage ? trimText(fmtDate(latestMessage.created_at), 12) : "—";
       }
 
       async function loadMessages() {
@@ -362,8 +712,10 @@
             var errText = await res.text();
             throw new Error(res.status + " " + errText);
           }
-          var messages = await res.json();
-          renderMessages(messages);
+          allMessages = await res.json();
+          renderSummary(allMessages);
+          renderChipGroup();
+          renderMessages();
         } catch (err) {
           console.error(err);
           msgContainer.innerHTML =
@@ -373,21 +725,32 @@
         }
       }
 
-      function renderMessages(messages) {
-        msgCount.textContent = messages.length;
-        if (!messages.length) {
+      function renderMessages() {
+        var filteredMessages = getFilteredMessages();
+        msgCount.textContent = filteredMessages.length;
+
+        if (!allMessages.length) {
           msgContainer.innerHTML =
             '<div class="empty-state">' +
             '<p class="big">No messages yet</p>' +
-            "<p>When someone fills out your contact form, their message appears here.</p>" +
-            "</div>";
+            '<p>When someone fills out your contact form, their message appears here.</p>' +
+            '</div>';
+          return;
+        }
+
+        if (!filteredMessages.length) {
+          msgContainer.innerHTML =
+            '<div class="empty-state">' +
+            '<p class="big">No matching messages</p>' +
+            '<p>Try clearing the search or switching to another category.</p>' +
+            '</div>';
           return;
         }
 
         var list = document.createElement("div");
         list.className = "msg-list";
 
-        messages.forEach(function (m) {
+        filteredMessages.forEach(function (m) {
           var card = document.createElement("article");
           card.className = "msg-card";
 
@@ -401,7 +764,7 @@
           var email = document.createElement("a");
           email.className = "msg-email";
           email.href = "mailto:" + (m.email || "");
-          email.textContent = m.email || "";
+          email.textContent = m.email || "No email";
 
           var cat = document.createElement("span");
           cat.className = "msg-cat";
@@ -462,8 +825,10 @@
           });
           if (res.ok) {
             cardEl.style.opacity = "0.4";
-            cardEl.style.textDecoration = "line-through";
-            setTimeout(loadMessages, 400);
+            cardEl.style.transition = "opacity 0.2s ease";
+            setTimeout(function () {
+              loadMessages();
+            }, 250);
           } else {
             alert("Could not delete message. Check that your Supabase policies allow DELETE, or delete it from the Supabase dashboard (Table Editor → messages).");
           }
@@ -471,6 +836,40 @@
           console.error(err);
           alert("Could not delete message (network error).");
         }
+      }
+
+      function exportMessagesCsv() {
+        var rows = getFilteredMessages();
+        if (!rows.length) {
+          alert("There are no messages to export for the current view.");
+          return;
+        }
+
+        var headers = ["Name", "Email", "Category", "Created At", "Message"];
+        var csv = [headers.join(",")];
+
+        rows.forEach(function (m) {
+          var values = [
+            (m.name || "").replace(/"/g, '""'),
+            (m.email || "").replace(/"/g, '""'),
+            (m.category || "").replace(/"/g, '""'),
+            (m.created_at || "").replace(/"/g, '""'),
+            (m.message || "").replace(/"/g, '""')
+          ].map(function (value) {
+            return '"' + String(value).replace(/\r?\n/g, " ") + '"';
+          });
+          csv.push(values.join(","));
+        });
+
+        var blob = new Blob([csv.join("\n")], { type: "text/csv;charset=utf-8;" });
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement("a");
+        link.href = url;
+        link.download = "messages.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
       }
     })();
   </script>
