@@ -1,6 +1,6 @@
 -- Admin access setup for public.messages.
 --
--- Before running this migration:
+-- Before running this migration
 -- 1. In Supabase Dashboard > Authentication > Users, create a confirmed user
 --    for naveenbv3011@gmail.com. Do not create a user password in this file.
 -- 2. Disable public sign-ups in Authentication settings. The public contact
