@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Naveen B V — AI &amp; ML Student | I Build AI Stuff</title>
-  <meta name="description" content="Personal portfolio of Naveen B V, an AI & ML student building practical AI projects, experimenting with technology, and turning ideas into useful products." />
+  <title>Naveen B V — Portfolio, in episodes</title>
+  <meta name="description" content="Step into the portfolio of Naveen B V: an AI & ML student learning, building practical projects, and turning ideas into useful products." />
   <meta name="author" content="Naveen B V" />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content="#09090d" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Naveen B V — AI & ML Student | I Build AI Stuff" />
-  <meta property="og:description" content="Personal portfolio of Naveen B V, an AI & ML student building practical AI projects, experimenting with technology, and turning ideas into useful products." />
+  <meta property="og:title" content="Naveen B V — Portfolio, in episodes" />
+  <meta property="og:description" content="Step into the portfolio of Naveen B V: an AI & ML student learning, building practical projects, and turning ideas into useful products." />
   <meta property="og:url" content="https://naveenbvv.github.io" />
   <meta property="og:site_name" content="Naveen B V" />
   <meta property="og:image" content="https://naveenbvv.github.io/photo.png" />
@@ -705,6 +705,235 @@
       }
       .reveal, .sr { opacity: 1; transform: none; }
     }
+
+    /* Portfolio premiere */
+    :root {
+      --bg: #09090d;
+      --bg-soft: #111116;
+      --card: #17171e;
+      --border: rgba(255,255,255,0.1);
+      --border-strong: rgba(255,255,255,0.2);
+      --text: #f7f5f2;
+      --text-dim: #c1bdc1;
+      --text-faint: #918c95;
+      --accent: #f04452;
+      --accent-soft: rgba(240,68,82,0.14);
+      --shadow: 0 18px 60px rgba(0,0,0,0.35);
+    }
+    body {
+      background: radial-gradient(ellipse at 75% 8%, rgba(107,29,44,0.22), transparent 35%), var(--bg);
+      color: var(--text);
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.13;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+    }
+    .nav { background: linear-gradient(180deg, rgba(9,9,13,0.92), transparent); }
+    .nav.scrolled {
+      background: rgba(9,9,13,0.88);
+      border-bottom-color: var(--border);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .nav-logo .dot, .hero-eyebrow .pulse, .badge-open .pulse { background: #f04452; }
+    .nav-links a, .hero-links a { color: #bcb8c0; }
+    .nav-links a:hover, .nav-links a.active, .hero-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .btn { background: rgba(255,255,255,0.06); color: #fff; border-color: rgba(255,255,255,0.22); }
+    .btn:hover { border-color: rgba(255,255,255,0.52); background: rgba(255,255,255,0.1); }
+    .btn-primary { background: #e50914; border-color: #e50914; color: #fff; }
+    .btn-primary:hover { background: #c90812; border-color: #c90812; }
+    .menu-btn { background: rgba(255,255,255,0.08); border-color: var(--border-strong); color: #fff; }
+    .mobile-menu { background: #111116; border-color: var(--border); }
+    .hero {
+      min-height: min(900px, 100svh);
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, #09090d 4%, rgba(9,9,13,0.93) 34%, rgba(9,9,13,0.42) 75%, rgba(9,9,13,0.28)),
+        linear-gradient(0deg, #09090d 0%, transparent 36%),
+        url("photo.png") no-repeat right 12% center / min(58vw, 760px) auto;
+    }
+    .hero-inner { grid-template-columns: minmax(0, 1fr) minmax(120px, 0.65fr); padding-top: 120px; padding-bottom: 110px; column-gap: 30px; }
+    .hero-copy { grid-column: 1 / 3; z-index: 1; }
+    .hero-portrait { display: none; }
+    .hero-eyebrow {
+      border: 1px solid rgba(255,255,255,0.17);
+      border-radius: 100px;
+      padding: 8px 13px;
+      margin-bottom: 26px;
+      color: #ded9df;
+      background: rgba(15,14,20,0.5);
+      backdrop-filter: blur(8px);
+    }
+    .hero h1 { max-width: 860px; font-size: clamp(3.4rem, 8vw, 7.6rem); line-height: 0.98; letter-spacing: -0.065em; text-shadow: 0 5px 35px rgba(0,0,0,0.32); }
+    .hero h1 .accent { color: #ff626b; }
+    .hero-sub { color: #d3cfd5; max-width: 540px; }
+    .hero-actions { margin-bottom: 32px; }
+    .hero-actions .btn { min-height: 50px; padding-inline: 23px; }
+    .hero-actions .btn-primary { box-shadow: 0 10px 35px rgba(229,9,20,0.24); }
+    .scroll-hint { color: #c5bec7; }
+    .scroll-hint .line { background: linear-gradient(#e50914, transparent); }
+    .section { padding-block: 100px; }
+    .section-label { color: #ff7078; }
+    .section-label::before { background: #f04452; }
+    .section h2 { color: #fff; }
+    .section-lead, .about-text p, .timeline p { color: #bbb6bf; }
+    .section[id="projects"], .section[id="contact"] { background: #101015 !important; border-color: rgba(255,255,255,0.08) !important; }
+    .availability-card, .profile-card, .build-card, .project-card, .now-card, .flow-chip, .tech-chip, .edu-card, .contact-card {
+      background-color: rgba(23,23,30,0.88);
+      border-color: rgba(255,255,255,0.1);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.16);
+    }
+    .profile-card:hover, .build-card:hover, .edu-card:hover, .tech-chip:hover { background: #202027; border-color: rgba(255,255,255,0.25); }
+    .profile-card .p-icon { background: #25232b; border-color: var(--border); }
+    .badge-open { background: rgba(229,9,20,0.12); border-color: rgba(229,9,20,0.26); color: #ff858b; }
+    .build-card .num, .project-lang, .project-meta, .projects-note, .flow-chip, .tech-chip, .edu-year { color: #aaa4af; }
+    .project-card {
+      padding: 0;
+      gap: 0;
+      overflow: hidden;
+      transition: transform 0.35s var(--ease), border-color 0.25s, box-shadow 0.3s;
+    }
+    .project-card:hover { transform: translateY(-7px); background: #17171e; border-color: rgba(255,255,255,0.27); box-shadow: 0 24px 60px rgba(0,0,0,0.38); }
+    .project-poster {
+      min-height: 212px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 75% 22%, rgba(255,255,255,0.24), transparent 23%), linear-gradient(135deg, #55232e, #16141d 72%);
+    }
+    .project-card:nth-child(4n + 2) .project-poster { background: radial-gradient(ellipse at 70% 22%, rgba(255,255,255,0.23), transparent 24%), linear-gradient(135deg, #183d45, #15141d 72%); }
+    .project-card:nth-child(4n + 3) .project-poster { background: radial-gradient(ellipse at 73% 20%, rgba(255,255,255,0.23), transparent 24%), linear-gradient(135deg, #48386e, #15141d 72%); }
+    .project-card:nth-child(4n) .project-poster { background: radial-gradient(ellipse at 73% 20%, rgba(255,255,255,0.23), transparent 24%), linear-gradient(135deg, #604523, #15141d 72%); }
+    .project-poster::before, .project-poster::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -25px;
+      top: -105px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      box-shadow: 0 0 0 25px rgba(255,255,255,0.035), 0 0 0 60px rgba(255,255,255,0.025);
+      transition: transform 0.8s var(--ease);
+    }
+    .project-poster::after { width: 120px; height: 120px; right: 24px; top: 20px; border-color: rgba(255,255,255,0.12); }
+    .project-card:hover .project-poster::before { transform: scale(1.13) rotate(14deg); }
+    .poster-index, .poster-title { position: relative; z-index: 1; }
+    .poster-index { position: absolute; top: 20px; left: 24px; color: rgba(255,255,255,0.72); font: 0.72rem var(--mono); letter-spacing: 0.13em; text-transform: uppercase; }
+    .poster-title { font-size: clamp(1.65rem, 4vw, 2.45rem); line-height: 1.02; letter-spacing: -0.045em; max-width: 80%; overflow-wrap: anywhere; text-shadow: 0 2px 18px rgba(0,0,0,0.35); }
+    .project-top, .project-desc, .project-meta, .project-links { margin-inline: 24px; }
+    .project-top { margin-top: 22px; }
+    .project-top h3 { font-size: 0.98rem; }
+    .project-desc { margin-top: 10px; min-height: 46px; }
+    .project-meta { margin-top: 14px; }
+    .project-links { margin-top: 18px; margin-bottom: 22px; padding-top: 14px; }
+    .project-links a { color: #e3dfe4; }
+    .project-links a:hover, .project-top h3 a:hover { color: #ff747b; }
+    .project-play { display: inline-flex; align-items: center; gap: 8px; padding: 0; border: 0; background: transparent; color: #fff; font: 600 0.88rem var(--font); cursor: pointer; }
+    .project-play .play-icon { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid rgba(255,255,255,0.35); border-radius: 50%; font-size: 0.68rem; transition: background 0.2s, border-color 0.2s; }
+    .project-play:hover .play-icon { background: #e50914; border-color: #e50914; }
+    .now-card, .contact-card { color: #c5c0c8; }
+    .timeline::before { background: linear-gradient(#e50914, var(--border)); }
+    .timeline li::before { background: var(--bg); border-color: #f04452; }
+    .timeline li.current::before { background: #e50914; box-shadow: 0 0 0 4px rgba(229,9,20,0.18); }
+    .edu-year { background: rgba(229,9,20,0.1); border-color: rgba(229,9,20,0.25); color: #ff8a90; }
+    .contact-email { color: #ff8188; border-color: var(--border); }
+    .contact-email:hover { background: #222127; border-color: #e50914; }
+    footer { border-top-color: var(--border); background: #09090d; }
+    .footer-links a { color: #bdb8c1; }
+    .footer-links a:hover { color: #fff; }
+
+    .story-player {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      padding: clamp(20px, 4vw, 52px);
+      overflow: auto;
+      color: #fff;
+      background: radial-gradient(ellipse at 78% 24%, rgba(119,28,44,0.48), transparent 36%), radial-gradient(ellipse at 18% 82%, rgba(48,34,75,0.32), transparent 40%), linear-gradient(135deg, #111016, #07070a 70%);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.45s ease, visibility 0.45s;
+    }
+    .story-player.open { opacity: 1; visibility: visible; pointer-events: auto; }
+    .story-player::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.16;
+      background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(90deg, black, transparent 85%);
+    }
+    .story-top, .story-progress, .story-stage, .story-controls { position: relative; z-index: 1; width: min(100%, 1120px); margin-inline: auto; }
+    .story-top { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .story-brand { font-size: 0.92rem; font-weight: 700; letter-spacing: 0.02em; }
+    .story-brand span { color: #f04452; margin-right: 9px; }
+    .story-close, .story-control {
+      min-height: 42px;
+      padding: 9px 14px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      font: 600 0.85rem var(--font);
+      cursor: pointer;
+    }
+    .story-close:hover, .story-control:hover:not(:disabled) { background: rgba(255,255,255,0.14); }
+    .story-progress { display: flex; gap: 7px; padding-top: 30px; }
+    .story-progress span { height: 3px; flex: 1; border-radius: 4px; background: rgba(255,255,255,0.22); overflow: hidden; }
+    .story-progress span.active, .story-progress span.complete { background: #f04452; }
+    .story-progress span.active { box-shadow: 0 0 14px rgba(240,68,82,0.55); }
+    .story-stage { display: flex; flex-direction: column; justify-content: center; padding: 50px 0; animation: story-arrive 0.7s var(--ease) both; }
+    @keyframes story-arrive { from { opacity: 0; transform: translateY(18px) scale(0.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .story-kicker { color: #ff747b; font: 0.76rem var(--mono); letter-spacing: 0.17em; text-transform: uppercase; margin-bottom: 21px; }
+    .story-stage h2 { max-width: 960px; font-size: clamp(2.8rem, 9.5vw, 8.6rem); line-height: 0.93; letter-spacing: -0.075em; margin-bottom: 25px; overflow-wrap: anywhere; }
+    .story-copy { max-width: 620px; color: #d0cbd2; font-size: clamp(1.02rem, 2vw, 1.28rem); line-height: 1.65; }
+    .story-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+    .story-meta span { padding: 7px 12px; border: 1px solid rgba(255,255,255,0.16); border-radius: 100px; color: #c8c2ca; font: 0.75rem var(--mono); }
+    .story-controls { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); }
+    .story-controls-group { display: flex; gap: 9px; }
+    .story-control:disabled { opacity: 0.38; cursor: not-allowed; }
+    .story-cta[hidden] { display: none; }
+    .story-cta { min-height: 44px; padding: 11px 18px; background: #e50914; color: #fff; border: 0; border-radius: 8px; font: 700 0.9rem var(--font); cursor: pointer; }
+    .story-cta:hover { background: #c90812; }
+    body.story-open { overflow: hidden; }
+    @media (max-width: 760px) {
+      .hero {
+        min-height: min(820px, 100svh);
+        background: linear-gradient(90deg, rgba(9,9,13,0.94), rgba(9,9,13,0.7)), linear-gradient(0deg, #09090d 0%, transparent 65%), url("photo.png") no-repeat right 16% center / auto 70%;
+      }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-copy { grid-column: 1; grid-row: auto; }
+      .hero h1 { font-size: clamp(3rem, 12.5vw, 5.2rem); }
+      .section { padding-block: 78px; }
+      .story-player { padding: 22px 20px; }
+      .story-controls { align-items: flex-end; }
+      .story-controls-group { flex-wrap: wrap; }
+      .project-poster { min-height: 190px; }
+    }
+    @media (max-width: 480px) {
+      .story-controls { flex-direction: column-reverse; align-items: stretch; }
+      .story-controls-group .story-control { flex: 1; }
+      .story-cta { width: 100%; }
+      .story-stage { padding-block: 34px; }
+      .project-poster { min-height: 175px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .story-stage { animation: none; }
+    }
   </style>
 </head>
 <body>
@@ -747,12 +976,12 @@
     <section class="hero" id="home">
       <div class="container hero-inner">
         <div class="hero-copy">
-          <span class="hero-eyebrow reveal"><span class="pulse" aria-hidden="true"></span>AI &amp; ML Student · Bengaluru, India</span>
-          <h1 class="reveal">Naveen B V<br /><span class="accent">I build AI stuff.</span></h1>
-          <p class="hero-sub reveal">AI &amp; ML student building practical projects, experimenting with AI tools, and turning ideas into useful products.</p>
+          <span class="hero-eyebrow reveal"><span class="pulse" aria-hidden="true"></span>Now streaming · A portfolio in episodes</span>
+          <h1 class="reveal">Welcome to<br /><span class="accent">my portfolio.</span></h1>
+          <p class="hero-sub reveal">The story so far: an AI &amp; ML student learning by building, experimenting, and turning ideas into useful things.</p>
           <div class="hero-actions reveal">
-            <a href="#projects" class="btn btn-primary">View Projects</a>
-            <a href="contact.html" class="btn">Contact Me</a>
+            <button type="button" class="btn btn-primary" id="play-portfolio"><span aria-hidden="true">▶</span> Play the story</button>
+            <a href="#projects" class="btn">Browse episodes</a>
           </div>
           <ul class="hero-links reveal">
             <li><a href="https://github.com/naveenbvv" target="_blank" rel="noopener">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></a></li>
@@ -852,8 +1081,8 @@
     <section class="section" id="projects" style="background: var(--bg-soft); border-block: 1px solid var(--border);">
       <div class="container">
         <p class="section-label sr">Projects</p>
-        <h2 class="sr">Things I've built</h2>
-        <p class="section-lead sr">Projects from my GitHub — whatever I push shows up here automatically. More coming soon.</p>
+        <h2 class="sr">Pick an episode</h2>
+        <p class="section-lead sr">Every project has a little story. Pick a poster to see what it is, then open the source if you want to go deeper.</p>
 
         <div class="projects-grid" id="projects-grid">
           <p class="projects-loading">Loading projects from GitHub…</p>
@@ -982,12 +1211,183 @@
     </div>
   </footer>
 
+  <div class="story-player" id="story-player" role="dialog" aria-modal="true" aria-labelledby="story-title" aria-describedby="story-copy" aria-hidden="true">
+    <div class="story-top">
+      <p class="story-brand"><span aria-hidden="true">N</span>NAVEEN B V <span>•</span> PORTFOLIO SERIES</p>
+      <button type="button" class="story-close" id="story-close" aria-label="Close story">✕ <span class="close-label">Close</span></button>
+    </div>
+    <div class="story-progress" id="story-progress" aria-label="Story progress"></div>
+    <div class="story-stage" id="story-stage" aria-live="polite">
+      <p class="story-kicker" id="story-kicker"></p>
+      <h2 id="story-title"></h2>
+      <p class="story-copy" id="story-copy"></p>
+      <div class="story-meta" id="story-meta"></div>
+    </div>
+    <div class="story-controls">
+      <button type="button" class="story-cta" id="story-cta" hidden></button>
+      <div class="story-controls-group">
+        <button type="button" class="story-control" id="story-previous">← Previous</button>
+        <button type="button" class="story-control" id="story-pause" aria-pressed="false">Pause</button>
+        <button type="button" class="story-control" id="story-next">Next →</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     (function () {
       "use strict";
 
       /* ================= CONFIG ================= */
       var GITHUB_USER = "naveenbvv";
+      var storyPlayer = document.getElementById("story-player");
+      var storyStage = document.getElementById("story-stage");
+      var storyProgress = document.getElementById("story-progress");
+      var storyKicker = document.getElementById("story-kicker");
+      var storyTitle = document.getElementById("story-title");
+      var storyCopy = document.getElementById("story-copy");
+      var storyMeta = document.getElementById("story-meta");
+      var storyPrevious = document.getElementById("story-previous");
+      var storyNext = document.getElementById("story-next");
+      var storyPause = document.getElementById("story-pause");
+      var storyCta = document.getElementById("story-cta");
+      var storyClose = document.getElementById("story-close");
+      var storyTimer = null;
+      var storyScenes = [];
+      var storyIndex = 0;
+      var storyOpener = null;
+      var storyIsPlaying = false;
+      var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      var portfolioScenes = [
+        { kicker: "Now streaming · The portfolio series", title: "Welcome to my portfolio.", copy: "I'm Naveen B V — an AI & ML student in Bengaluru, learning by making ideas real.", meta: ["A short introduction", "Made with curiosity"] },
+        { kicker: "Scene 01 · The beginning", title: "Curiosity comes first.", copy: "I like understanding how things work, then learning by building something of my own.", meta: ["Learning", "Exploring"] },
+        { kicker: "Scene 02 · The build", title: "Ideas become experiments.", copy: "From practical AI/ML projects to small web experiences, each build is another chance to learn.", meta: ["Python", "AI & ML", "Product ideas"] },
+        { kicker: "Scene 03 · Coming next", title: "The story is still being written.", copy: "Take a look at the projects, follow along, or get in touch about what we could build next.", meta: ["More episodes ahead"] }
+      ];
+
+      function stopStoryTimer() {
+        if (storyTimer) window.clearInterval(storyTimer);
+        storyTimer = null;
+      }
+
+      function renderStory() {
+        var scene = storyScenes[storyIndex];
+        storyKicker.textContent = scene.kicker;
+        storyTitle.textContent = scene.title;
+        storyCopy.textContent = scene.copy;
+        storyMeta.replaceChildren();
+        scene.meta.forEach(function (item) {
+          var chip = document.createElement("span");
+          chip.textContent = item;
+          storyMeta.appendChild(chip);
+        });
+        storyProgress.replaceChildren();
+        storyScenes.forEach(function (_, index) {
+          var segment = document.createElement("span");
+          segment.className = index < storyIndex ? "complete" : (index === storyIndex ? "active" : "");
+          segment.setAttribute("aria-label", "Scene " + (index + 1) + (index === storyIndex ? ", current" : ""));
+          storyProgress.appendChild(segment);
+        });
+        storyPrevious.disabled = storyIndex === 0;
+        storyNext.disabled = storyIndex === storyScenes.length - 1;
+        storyNext.textContent = storyIndex === storyScenes.length - 1 ? "End" : "Next →";
+        storyCta.hidden = storyIndex !== storyScenes.length - 1 || !scene.action;
+        if (scene.action) {
+          storyCta.textContent = scene.action.label;
+          storyCta.dataset.href = scene.action.href;
+          storyCta.dataset.target = scene.action.target || "";
+        }
+        storyStage.classList.remove("story-stage");
+        void storyStage.offsetWidth;
+        storyStage.classList.add("story-stage");
+      }
+
+      function setStoryScene(index) {
+        storyIndex = Math.max(0, Math.min(index, storyScenes.length - 1));
+        renderStory();
+        if (storyIsPlaying && storyIndex === storyScenes.length - 1) {
+          storyIsPlaying = false;
+          stopStoryTimer();
+          storyPause.textContent = "Replay";
+          storyPause.setAttribute("aria-pressed", "false");
+        }
+      }
+
+      function startStoryTimer() {
+        stopStoryTimer();
+        if (reducedMotion || !storyIsPlaying || storyIndex === storyScenes.length - 1) return;
+        storyTimer = window.setInterval(function () { setStoryScene(storyIndex + 1); }, 6500);
+      }
+
+      function openStory(scenes, opener) {
+        stopStoryTimer();
+        storyScenes = scenes;
+        storyIndex = 0;
+        storyOpener = opener || document.activeElement;
+        storyIsPlaying = !reducedMotion;
+        storyPlayer.classList.add("open");
+        storyPlayer.setAttribute("aria-hidden", "false");
+        document.body.classList.add("story-open");
+        storyPause.textContent = storyIsPlaying ? "Pause" : "Play";
+        storyPause.setAttribute("aria-pressed", String(storyIsPlaying));
+        renderStory();
+        storyNext.focus();
+        startStoryTimer();
+      }
+
+      function closeStory() {
+        stopStoryTimer();
+        storyIsPlaying = false;
+        storyPlayer.classList.remove("open");
+        storyPlayer.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("story-open");
+        if (storyOpener && typeof storyOpener.focus === "function") storyOpener.focus();
+      }
+
+      document.getElementById("play-portfolio").addEventListener("click", function (event) {
+        var scenes = portfolioScenes.slice();
+        scenes[scenes.length - 1] = Object.assign({}, scenes[scenes.length - 1], {
+          action: { label: "Explore the episodes", href: "#projects" }
+        });
+        openStory(scenes, event.currentTarget);
+      });
+      storyClose.addEventListener("click", closeStory);
+      storyPlayer.addEventListener("click", function (event) {
+        if (event.target === storyPlayer) closeStory();
+      });
+      storyPrevious.addEventListener("click", function () { setStoryScene(storyIndex - 1); startStoryTimer(); });
+      storyNext.addEventListener("click", function () { setStoryScene(storyIndex + 1); startStoryTimer(); });
+      storyPause.addEventListener("click", function () {
+        if (storyIndex === storyScenes.length - 1) {
+          setStoryScene(0);
+          storyIsPlaying = !reducedMotion;
+        } else {
+          storyIsPlaying = !storyIsPlaying;
+        }
+        storyPause.textContent = storyIsPlaying ? "Pause" : "Play";
+        storyPause.setAttribute("aria-pressed", String(storyIsPlaying));
+        startStoryTimer();
+      });
+      storyCta.addEventListener("click", function () {
+        var href = storyCta.dataset.href;
+        var target = storyCta.dataset.target;
+        closeStory();
+        if (target === "_blank") window.open(href, "_blank", "noopener");
+        else if (href && href.charAt(0) === "#") document.querySelector(href).scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+      });
+      document.addEventListener("keydown", function (event) {
+        if (!storyPlayer.classList.contains("open")) return;
+        if (event.key === "Escape") closeStory();
+        else if (event.key === "ArrowRight") { setStoryScene(storyIndex + 1); startStoryTimer(); }
+        else if (event.key === "ArrowLeft") { setStoryScene(storyIndex - 1); startStoryTimer(); }
+        else if (event.key === "Tab") {
+          var focusable = Array.prototype.slice.call(storyPlayer.querySelectorAll("button:not(:disabled):not([hidden])"));
+          var first = focusable[0];
+          var last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+          else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+        }
+      });
 
       /* ---- Navbar scroll state ---- */
       var nav = document.getElementById("nav");
@@ -1068,8 +1468,13 @@
         return e;
       }
 
-      function projectCard(repo, featured) {
-        var card = el("article", "project-card sr visible" + (featured ? " featured" : ""));
+      function projectCard(repo, episode) {
+        var card = el("article", "project-card sr visible" + (episode === 1 ? " featured" : ""));
+
+        var poster = el("div", "project-poster");
+        poster.appendChild(el("span", "poster-index", "Episode " + (episode < 10 ? "0" : "") + episode));
+        poster.appendChild(el("p", "poster-title", repo.name));
+        card.appendChild(poster);
 
         var top = el("div", "project-top");
         var h3 = el("h3");
@@ -1105,6 +1510,21 @@
         card.appendChild(meta);
 
         var links = el("div", "project-links");
+        var play = el("button", "project-play");
+        play.type = "button";
+        play.appendChild(el("span", "play-icon", "▶"));
+        play.appendChild(document.createTextNode("Play project story"));
+        play.addEventListener("click", function () {
+          var projectDescription = repo.description || "A project built by Naveen B V. Open the repository to explore the code and details.";
+          var projectLanguage = repo.language || "Project";
+          var projectScenes = [
+            { kicker: "Project episode · The idea", title: repo.name, copy: projectDescription, meta: ["A project by Naveen B V", projectLanguage] },
+            { kicker: "The build", title: "Built to learn by doing.", copy: repo.description || "This public repository is part of an ongoing learning journey. Visit the source to see how it works.", meta: [projectLanguage, "Open source"] },
+            { kicker: "The next frame", title: "Explore the project.", copy: "The repository has the full story: source code, project details, and anything added next.", meta: ["Continue on GitHub"], action: { label: "Open on GitHub", href: repo.html_url, target: "_blank" } }
+          ];
+          openStory(projectScenes, play);
+        });
+        links.appendChild(play);
         var view = el("a", "", "View Project");
         view.href = repo.html_url; view.target = "_blank"; view.rel = "noopener";
         view.innerHTML += ' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>';
@@ -1129,7 +1549,7 @@
           });
           repos.forEach(function (repo, i) {
             if (repo.fork) return; // skip forks
-            grid.appendChild(projectCard(repo, i === 0));
+            grid.appendChild(projectCard(repo, i + 1));
           });
         })
         .catch(function () {
