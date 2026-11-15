@@ -11,20 +11,20 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #ffffff;
+      --bg: #f5f7fb;
       --bg-soft: #f7f8fa;
       --card: #ffffff;
       --card-strong: #ffffff;
-      --border: #e8eaee;
-      --border-strong: #d6dae1;
-      --text: #20242b;
+      --border: #e7eaf1;
+      --border-strong: #d6dae5;
+      --text: #1c2434;
       --text-dim: #565e6b;
       --text-faint: #7d8490;
-      --accent: #38665b;
-      --accent-strong: #2d554b;
-      --accent-soft: #edf4f1;
-      --accent-glow: rgba(56, 102, 91, 0.12);
-      --green: #38665b;
+      --accent: #6558d3;
+      --accent-strong: #5145bd;
+      --accent-soft: #f0efff;
+      --accent-glow: rgba(101, 88, 211, 0.14);
+      --green: #168a70;
       --red: #b42318;
       --yellow: #9a6700;
       --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -37,6 +37,7 @@
     html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
+      background-image: radial-gradient(ellipse at 10% 0%, rgba(116, 100, 235, 0.09), transparent 34rem);
       color: var(--text);
       font-family: var(--font);
       font-size: 16px;
@@ -132,7 +133,8 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255,255,255,0.96);
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
     .admin-nav-inner {
@@ -180,8 +182,16 @@
       color: #fff;
     }
 
-    main { padding: 44px 0 90px; }
-    .page-head { margin-bottom: 22px; }
+    main { padding: 38px 0 90px; }
+    .page-head { margin-bottom: 24px; }
+    .eyebrow {
+      display: block;
+      color: var(--accent);
+      font: 700 0.7rem var(--mono);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
     .page-head h2 {
       font-size: clamp(1.8rem, 4vw, 2.5rem);
       font-weight: 780;
@@ -218,6 +228,7 @@
       border: 1px solid var(--border);
       border-radius: 18px;
       background: var(--card);
+      box-shadow: var(--shadow);
     }
     .search-wrap {
       position: relative;
@@ -275,12 +286,32 @@
       margin-bottom: 22px;
     }
     .stat-card {
+      position: relative;
+      overflow: hidden;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 18px;
-      padding: 18px 18px 16px;
-      box-shadow: none;
+      padding: 20px 20px 18px;
+      box-shadow: var(--shadow);
+      min-height: 126px;
     }
+    .stat-card::after {
+      content: "";
+      position: absolute;
+      width: 86px;
+      height: 86px;
+      right: -24px;
+      top: -25px;
+      border-radius: 50%;
+      background: var(--stat-soft);
+    }
+    .stat-card.purple { --stat-color: #6558d3; --stat-soft: #eeecff; }
+    .stat-card.blue { --stat-color: #2874cc; --stat-soft: #e8f3ff; }
+    .stat-card.orange { --stat-color: #d66b28; --stat-soft: #fff0e5; }
+    .stat-card.green { --stat-color: #168a70; --stat-soft: #e5f7f0; }
+    .stat-card .stat-label, .stat-card .stat-value { position: relative; z-index: 1; }
+    .stat-card .stat-label { color: var(--stat-color); }
+    .stat-hint { display: block; color: var(--text-faint); font-size: 0.76rem; margin-top: 2px; }
     .stat-label {
       display: block;
       color: var(--text-faint);
@@ -296,6 +327,118 @@
       font-weight: 750;
       letter-spacing: -0.04em;
       color: var(--text);
+    }
+
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(260px, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .analytics-card {
+      min-width: 0;
+      padding: 22px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+    .analytics-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .analytics-head h3 { font-size: 1rem; letter-spacing: -0.02em; }
+    .analytics-head p { color: var(--text-faint); font-size: 0.78rem; margin-top: 3px; }
+    .analytics-total {
+      flex: 0 0 auto;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-radius: 999px;
+      padding: 5px 10px;
+      font: 700 0.75rem var(--mono);
+    }
+    .trend-chart {
+      min-height: 196px;
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      align-items: end;
+      gap: clamp(7px, 2vw, 18px);
+      padding-top: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .trend-day {
+      min-width: 0;
+      height: 100%;
+      display: grid;
+      grid-template-rows: 18px 1fr 30px;
+      justify-items: center;
+      align-items: end;
+      gap: 7px;
+    }
+    .trend-count { color: var(--text-dim); font: 600 0.68rem var(--mono); }
+    .trend-track {
+      width: min(100%, 30px);
+      height: 100%;
+      display: flex;
+      align-items: end;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #f8f7ff, #f5f5fb);
+      overflow: hidden;
+    }
+    .trend-bar {
+      width: 100%;
+      min-height: 4px;
+      height: var(--bar-height);
+      border-radius: 999px;
+      background: linear-gradient(180deg, #9a8df7, #6558d3);
+    }
+    .trend-label { color: var(--text-faint); font-size: 0.66rem; text-align: center; }
+    .category-list { display: flex; flex-direction: column; gap: 16px; }
+    .category-item { min-width: 0; }
+    .category-topline { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 7px; }
+    .category-name { overflow: hidden; color: var(--text-dim); font-size: 0.82rem; text-overflow: ellipsis; white-space: nowrap; }
+    .category-count { flex: 0 0 auto; color: var(--text); font: 600 0.75rem var(--mono); }
+    .category-track { height: 7px; overflow: hidden; border-radius: 999px; background: #f0f1f6; }
+    .category-bar { height: 100%; width: var(--category-width); border-radius: inherit; background: var(--category-color); }
+    .category-bar.color-0 { --category-color: #6558d3; }
+    .category-bar.color-1 { --category-color: #e17a43; }
+    .category-bar.color-2 { --category-color: #2c9b81; }
+    .category-bar.color-3 { --category-color: #3982d5; }
+    .category-bar.color-4 { --category-color: #ce5e8a; }
+    .category-bar.color-5 { --category-color: #c09a2d; }
+    .analytics-empty { color: var(--text-faint); font-size: 0.84rem; padding: 20px 0; text-align: center; }
+    .list-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 12px;
+      margin: 0 0 14px;
+    }
+    .list-heading h3 { font-size: 1.15rem; letter-spacing: -0.03em; }
+    .list-heading p { color: var(--text-faint); font-size: 0.8rem; }
+    .toolbar-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .toolbar-select {
+      min-height: 42px;
+      padding: 0 32px 0 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: 11px;
+      background-color: var(--card);
+      color: var(--text-dim);
+      font: 600 0.8rem var(--font);
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     .msg-list { display: flex; flex-direction: column; gap: 14px; }
@@ -418,6 +561,7 @@
       .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .toolbar { align-items: stretch; }
       .chip-group { width: 100%; }
+      .analytics-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 600px) {
@@ -426,8 +570,12 @@
       .admin-nav-inner { width: min(100% - 24px, 1180px); }
       .msg-date { margin-left: 0; width: 100%; }
       .page-head h2 { align-items: flex-start; }
-      .admin-actions { gap: 6px; }
+      .admin-nav-inner { align-items: flex-start; flex-wrap: wrap; }
+      .admin-user { width: 100%; text-align: right; }
+      .admin-actions { flex: 1 1 100%; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
       .btn-sm { padding: 8px 10px; }
+      .analytics-card { padding: 18px; }
+      .list-heading { align-items: flex-start; flex-direction: column; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -476,8 +624,9 @@
     <main>
       <div class="container">
         <div class="page-head">
-          <h2>Contact form messages<span class="count-badge" id="msg-count">0</span></h2>
-          <p>Messages submitted through your contact page, stored in Supabase.</p>
+          <span class="eyebrow">Admin overview</span>
+          <h2>Messages &amp; insights<span class="count-badge" id="msg-count">0</span></h2>
+          <p>Track contact activity and manage messages submitted through your portfolio.</p>
         </div>
 
         <div class="toolbar" aria-label="Message filters">
@@ -488,28 +637,77 @@
             </svg>
             <input id="search-input" type="search" placeholder="Search by name, email, or message" />
           </label>
+          <div class="toolbar-options" aria-label="Message list options">
+            <label>
+              <span class="sr-only">Date range</span>
+              <select id="period-select" class="toolbar-select">
+                <option value="all">All time</option>
+                <option value="30">Last 30 days</option>
+                <option value="7">Last 7 days</option>
+              </select>
+            </label>
+            <label>
+              <span class="sr-only">Sort messages</span>
+              <select id="sort-select" class="toolbar-select">
+                <option value="newest">Newest first</option>
+                <option value="oldest">Oldest first</option>
+              </select>
+            </label>
+          </div>
           <div class="chip-group" id="chip-group" aria-label="Category filters"></div>
         </div>
 
         <div class="stats-grid" aria-label="Message summary">
-          <div class="stat-card">
-            <span class="stat-label">Total</span>
+          <div class="stat-card purple">
+            <span class="stat-label">Messages</span>
             <span class="stat-value" id="stat-total">0</span>
+            <span class="stat-hint">In selected period</span>
           </div>
-          <div class="stat-card">
+          <div class="stat-card blue">
             <span class="stat-label">Categories</span>
             <span class="stat-value" id="stat-categories">0</span>
+            <span class="stat-hint">Topics received</span>
           </div>
-          <div class="stat-card">
-            <span class="stat-label">Email contacts</span>
+          <div class="stat-card orange">
+            <span class="stat-label">Reply-ready</span>
             <span class="stat-value" id="stat-replies">0</span>
+            <span class="stat-hint">Messages with a valid email</span>
           </div>
-          <div class="stat-card">
-            <span class="stat-label">Latest</span>
+          <div class="stat-card green">
+            <span class="stat-label">Latest message</span>
             <span class="stat-value" id="stat-latest">—</span>
+            <span class="stat-hint">Most recent contact</span>
           </div>
         </div>
 
+        <section class="analytics-grid" aria-label="Message analytics">
+          <div class="analytics-card">
+            <div class="analytics-head">
+              <div>
+                <h3>Message activity</h3>
+                <p>Daily messages over the last 7 days</p>
+              </div>
+              <span class="analytics-total" id="trend-total">0 total</span>
+            </div>
+            <div class="trend-chart" id="trend-chart" role="img" aria-label="Message activity over the last seven days"></div>
+          </div>
+          <div class="analytics-card">
+            <div class="analytics-head">
+              <div>
+                <h3>Popular topics</h3>
+                <p>Category mix for selected period</p>
+              </div>
+            </div>
+            <div class="category-list" id="category-list"></div>
+          </div>
+        </section>
+
+        <div class="list-heading">
+          <div>
+            <h3>Inbox</h3>
+            <p>Search, filter, reply, or export your messages.</p>
+          </div>
+        </div>
         <p class="action-status" id="action-status" role="status" aria-live="polite"></p>
         <div id="msg-container">
           <p class="loading-state">Loading messages…</p>
@@ -549,6 +747,8 @@
       var msgCount = document.getElementById("msg-count");
       var searchInput = document.getElementById("search-input");
       var chipGroup = document.getElementById("chip-group");
+      var periodSelect = document.getElementById("period-select");
+      var sortSelect = document.getElementById("sort-select");
       var actionStatus = document.getElementById("action-status");
       var adminUser = document.getElementById("admin-user");
       var refreshButton = document.getElementById("refresh-btn");
@@ -557,6 +757,9 @@
       var statCategories = document.getElementById("stat-categories");
       var statReplies = document.getElementById("stat-replies");
       var statLatest = document.getElementById("stat-latest");
+      var trendChart = document.getElementById("trend-chart");
+      var trendTotal = document.getElementById("trend-total");
+      var categoryList = document.getElementById("category-list");
 
       var allMessages = [];
       var currentFilter = "all";
@@ -614,6 +817,13 @@
 
       refreshButton.addEventListener("click", loadMessages);
       document.getElementById("export-btn").addEventListener("click", exportMessagesCsv);
+      periodSelect.addEventListener("change", function () {
+        var periodMessages = getPeriodMessages();
+        renderSummary(periodMessages);
+        renderAnalytics(periodMessages);
+        renderMessages();
+      });
+      sortSelect.addEventListener("change", renderMessages);
       searchInput.addEventListener("input", function () {
         searchTerm = searchInput.value.trim().toLowerCase();
         renderMessages();
@@ -646,6 +856,8 @@
         currentFilter = "all";
         searchTerm = "";
         searchInput.value = "";
+        periodSelect.value = "all";
+        sortSelect.value = "newest";
         adminScreen.style.display = "none";
         lockScreen.style.display = "flex";
         adminUser.textContent = "";
@@ -656,6 +868,9 @@
         statCategories.textContent = "0";
         statReplies.textContent = "0";
         statLatest.textContent = "—";
+        trendChart.replaceChildren();
+        trendTotal.textContent = "0 total";
+        categoryList.replaceChildren();
         setActionStatus("");
         exportButton.disabled = true;
         refreshButton.disabled = true;
@@ -704,7 +919,7 @@
       }
 
       function getFilteredMessages() {
-        return allMessages.filter(function (m) {
+        var filtered = getPeriodMessages().filter(function (m) {
           var category = normalizeCategory(m.category);
           if (currentFilter !== "all" && category !== currentFilter) {
             return false;
@@ -720,6 +935,21 @@
           ].join(" ").toLowerCase();
 
           return haystack.indexOf(searchTerm) !== -1;
+        });
+        filtered.sort(function (a, b) {
+          var difference = new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+          return sortSelect.value === "oldest" ? difference : -difference;
+        });
+        return filtered;
+      }
+
+      function getPeriodMessages() {
+        var days = Number(periodSelect.value);
+        if (!days) return allMessages.slice();
+        var cutoff = Date.now() - days * 24 * 60 * 60 * 1000;
+        return allMessages.filter(function (message) {
+          var timestamp = new Date(message.created_at).getTime();
+          return Number.isFinite(timestamp) && timestamp >= cutoff;
         });
       }
 
@@ -770,7 +1000,7 @@
         messages.forEach(function (m) {
           var category = String(m.category || "Other").trim() || "Other";
           uniqueCategories[category] = true;
-          if (m.email) replyCount += 1;
+          if (isValidEmail(m.email)) replyCount += 1;
         });
 
         statTotal.textContent = total;
@@ -792,6 +1022,106 @@
         statLatest.textContent = latestMessage ? trimText(fmtDate(latestMessage.created_at), 12) : "—";
       }
 
+      function renderAnalytics(messages) {
+        var buckets = Object.create(null);
+        var days = [];
+        var today = new Date();
+        for (var offset = 6; offset >= 0; offset -= 1) {
+          var day = new Date(today.getFullYear(), today.getMonth(), today.getDate() - offset);
+          var key = day.getFullYear() + "-" + day.getMonth() + "-" + day.getDate();
+          buckets[key] = 0;
+          days.push({ date: day, key: key });
+        }
+
+        messages.forEach(function (message) {
+          var date = new Date(message.created_at);
+          if (!Number.isFinite(date.getTime())) return;
+          var key = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
+          if (Object.prototype.hasOwnProperty.call(buckets, key)) buckets[key] += 1;
+        });
+
+        var peak = days.reduce(function (maximum, day) {
+          return Math.max(maximum, buckets[day.key]);
+        }, 0);
+        trendChart.replaceChildren();
+        days.forEach(function (day) {
+          var count = buckets[day.key];
+          var column = document.createElement("div");
+          column.className = "trend-day";
+          column.setAttribute("aria-label", day.date.toLocaleDateString("en-IN", {
+            day: "numeric", month: "short", weekday: "long"
+          }) + ": " + count + " messages");
+
+          var countLabel = document.createElement("span");
+          countLabel.className = "trend-count";
+          countLabel.textContent = count || "";
+
+          var track = document.createElement("span");
+          track.className = "trend-track";
+          var bar = document.createElement("span");
+          bar.className = "trend-bar";
+          bar.style.setProperty("--bar-height", (peak ? Math.max(count / peak * 100, count ? 12 : 3) : 3) + "%");
+          track.appendChild(bar);
+
+          var dateLabel = document.createElement("span");
+          dateLabel.className = "trend-label";
+          dateLabel.textContent = day.date.toLocaleDateString("en-IN", { weekday: "short" });
+
+          column.appendChild(countLabel);
+          column.appendChild(track);
+          column.appendChild(dateLabel);
+          trendChart.appendChild(column);
+        });
+        var weeklyTotal = days.reduce(function (total, day) {
+          return total + buckets[day.key];
+        }, 0);
+        trendTotal.textContent = weeklyTotal + " total";
+        trendChart.setAttribute("aria-label", "Message activity over the last seven days: " + weeklyTotal + " messages");
+
+        var categoryCounts = Object.create(null);
+        messages.forEach(function (message) {
+          var label = String(message.category || "Other").trim() || "Other";
+          categoryCounts[label] = (categoryCounts[label] || 0) + 1;
+        });
+        var categories = Object.keys(categoryCounts).sort(function (a, b) {
+          return categoryCounts[b] - categoryCounts[a] || a.localeCompare(b);
+        });
+        categoryList.replaceChildren();
+        if (!categories.length) {
+          var empty = document.createElement("p");
+          empty.className = "analytics-empty";
+          empty.textContent = "No category data for this period.";
+          categoryList.appendChild(empty);
+          return;
+        }
+
+        var maximum = categoryCounts[categories[0]];
+        categories.slice(0, 6).forEach(function (label, index) {
+          var item = document.createElement("div");
+          item.className = "category-item";
+          var topline = document.createElement("div");
+          topline.className = "category-topline";
+          var name = document.createElement("span");
+          name.className = "category-name";
+          name.textContent = label;
+          var count = document.createElement("span");
+          count.className = "category-count";
+          count.textContent = categoryCounts[label] + " · " +
+            Math.round(categoryCounts[label] / messages.length * 100) + "%";
+          var track = document.createElement("div");
+          track.className = "category-track";
+          var bar = document.createElement("div");
+          bar.className = "category-bar color-" + (index % 6);
+          bar.style.setProperty("--category-width", (categoryCounts[label] / maximum * 100) + "%");
+          topline.appendChild(name);
+          topline.appendChild(count);
+          track.appendChild(bar);
+          item.appendChild(topline);
+          item.appendChild(track);
+          categoryList.appendChild(item);
+        });
+      }
+
       async function loadMessages() {
         if (!unlocked) return;
         refreshButton.disabled = true;
@@ -807,12 +1137,14 @@
           if (!unlocked) return;
           if (!Array.isArray(result.data)) throw new Error("Supabase returned an invalid messages response.");
           allMessages = result.data;
-          renderSummary(allMessages);
+          renderSummary(getPeriodMessages());
+          renderAnalytics(getPeriodMessages());
           renderChipGroup();
           renderMessages();
-          setActionStatus(allMessages.length
-            ? "Showing " + allMessages.length + " message" + (allMessages.length === 1 ? "" : "s") + "."
-            : "Your messages are up to date.");
+          var visibleCount = getFilteredMessages().length;
+          setActionStatus(visibleCount
+            ? "Showing " + visibleCount + " message" + (visibleCount === 1 ? "" : "s") + " for the current filters."
+            : allMessages.length ? "No messages match the current filters." : "Your messages are up to date.");
         } catch (err) {
           if (!unlocked) return;
           console.error("Could not load messages:", err);
@@ -962,7 +1294,8 @@
           allMessages = allMessages.filter(function (item) {
             return item.id !== message.id;
           });
-          renderSummary(allMessages);
+          renderSummary(getPeriodMessages());
+          renderAnalytics(getPeriodMessages());
           renderChipGroup();
           renderMessages();
           exportButton.disabled = allMessages.length === 0;
